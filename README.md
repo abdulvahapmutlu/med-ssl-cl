@@ -70,23 +70,23 @@ Edit `configs/*.yaml` to point to your local dataset and adjust:
 ### Pretraining
 
 ```
-bash scripts/run_pretrain.sh --config configs/pretrain.yaml
+scripts/run_pretrain.sh --config configs/pretrain.yaml
 ```
 
 ### Finetuning
 
 ```
-bash scripts/run_finetune.sh --config configs/finetune_shenzhen.yaml
+scripts/run_finetune.sh --config configs/finetune_shenzhen.yaml
 ```
 
 ### Continual Learning
 
 ```
 # Shenzhen → Montgomery
-bash scripts/run_continual.sh --config configs/continual_montgomery.yaml
+scripts/run_continual.sh --config configs/continual_montgomery.yaml
 
 # Shanghai → Montgomery → MIAS
-bash scripts/run_continual.sh --config configs/continual_mias.yaml
+scripts/run_continual.sh --config configs/continual_mias.yaml
 ```
 
 ---
