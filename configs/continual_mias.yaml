@@ -1,0 +1,39 @@
+# configs/continual_mias.yaml
+data:
+  shen_csv_path: "C:/Users/offic/OneDrive/Masaüstü/datasets/SelfSupervised/Shenzhen/shenzhen_metadata.csv"
+  shen_img_dir:  "C:/Users/offic/OneDrive/Masaüstü/datasets/SelfSupervised/Shenzhen/images/images"
+  mont_csv_path:"C:/Users/offic/OneDrive/Masaüstü/datasets/SelfSupervised/Montgomery/montgomery_metadata.csv"
+  mont_img_dir: "C:/Users/offic/OneDrive/Masaüstü/datasets/SelfSupervised/Montgomery/images/images"
+  mias_csv_path:"C:/Users/offic/OneDrive/Masaüstü/datasets/SelfSupervised/MIAS/mias_info.csv"
+  mias_img_dir: "C:/Users/offic/OneDrive/Masaüstü/datasets/SelfSupervised/MIAS/images"
+
+dataloader:
+  batch_size: 32
+  num_workers: 0
+  shuffle: true
+  pin_memory: false
+  seed: 42
+
+model:
+  ssl_ckpt_path: "C:/Users/offic/medself/shenzhen_ckpts/epoch=11-aucval_auc=0.896.ckpt"
+  mem_size: 200
+  ewc_lambda: 0.05
+
+training:
+  epochs:
+    shen: 5
+    mont: 25
+    mias_phase1: 12
+    mias_phase2: 25
+  lr:
+    shen: 1e-4
+    mont: 3e-4
+    mias_head: 3e-4
+    mias_mid: 1e-4
+  grad_accum: 2
+
+trainer:
+  accelerator: "gpu"
+  devices: 1
+  log_every_n_steps: 10
+  gradient_clip_val: 1.0
