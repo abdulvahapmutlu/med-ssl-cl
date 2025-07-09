@@ -1,0 +1,28 @@
+
+---
+
+```
+# File: environment.yml
+
+name: ssl_cl_chest
+channels:
+  - pytorch
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - numpy
+  - pandas
+  - pyyaml
+  - pillow
+  - scikit-learn
+  - timm
+  - pytorch-lightning >=2.0
+  - torchmetrics
+  - torch
+  - torchvision
+  - matplotlib
+  - mermaid-cli  # for diagram rendering, optional
+  - pip:
+      - optuna
