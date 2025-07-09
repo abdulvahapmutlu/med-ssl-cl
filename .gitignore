@@ -1,0 +1,32 @@
+# File: .gitignore
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Conda env
+.env/
+*.yml
+
+# Jupyter notebooks checkpoints
+.ipynb_checkpoints/
+
+# Logs and results
+logs/
+results/
+
+# Checkpoints
+checkpoints/
+shenzhen_ckpts/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Scratch and temp files
+*.tmp
