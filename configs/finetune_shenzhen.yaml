@@ -1,0 +1,35 @@
+# configs/finetune_shenzhen.yaml
+data:
+  csv_path: "C:/Users/offic/OneDrive/Masaüstü/datasets/SelfSupervised/Shenzhen/shenzhen_metadata.csv"
+  img_dir:  "C:/Users/offic/OneDrive/Masaüstü/datasets/SelfSupervised/Shenzhen/images/images"
+
+dataloader:
+  batch_size: 32
+  num_workers: 0
+  pin_memory: true
+  shuffle: true
+  seed: 42
+
+model:
+  ckpt_path: "C:/Users/offic/medself/checkpoints/epoch=39-step=12280.ckpt"
+  freeze_epochs: 3
+  lr: 1e-3
+
+trainer:
+  accelerator: "gpu"
+  devices: 1
+  precision: "bf16-mixed"
+  max_epochs: 15
+  log_every_n_steps: 10
+  callbacks:
+    - name: ModelCheckpoint
+      dirpath: "shenzhen_ckpts"
+      filename: "epoch{epoch}-auc{val_auc:.3f}"
+      monitor: "val_auc"
+      mode: "max"
+      save_top_k: 1
+    - name: EarlyStopping
+      monitor: "val_auc"
+      mode: "max"
+      patience: 4
+    - name: RichProgressBar
