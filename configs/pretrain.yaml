@@ -1,0 +1,35 @@
+# configs/pretrain.yaml
+data:
+  npz_path: "C:/Users/offic/OneDrive/Masaüstü/datasets/SelfSupervised/chestmnist.npz"
+
+dataloader:
+  batch_size: 128
+  num_workers: 0
+  pin_memory: false
+  shuffle: true
+
+model:
+  lr: 3e-4
+  out_dim: 256
+  warmup_epochs: 5
+  max_epochs: 40
+
+trainer:
+  accelerator: "gpu"            # or "cpu" if no GPU
+  devices: 1
+  precision: "16-mixed"
+  max_epochs: 40
+  accumulate_grad_batches: 2
+  log_every_n_steps: 10
+  callbacks:
+    - name: ModelCheckpoint
+      dirpath: "checkpoints"
+      save_top_k: -1
+      every_n_epochs: 5
+    - name: LearningRateMonitor
+      logging_interval: "step"
+    - name: RichProgressBar
+      theme:
+        description: "blue"
+        progress_bar: "green"
+    - name: BatchProgressCallback
